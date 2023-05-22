@@ -29,3 +29,8 @@ public class HomeController : Controller
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
 }
+
+// write a function to add two numbers together
+
+// Path: LibraryApp/Controllers/CalculatorController.cs
+

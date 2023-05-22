@@ -1,0 +1,19 @@
+services:
+  WebApplication1:
+    image: webapplication1:dev
+    build:
+      context: .
+      dockerfile: webApplication1/Dockerfile
+    ports:
+      - "5000:80"
+      - "5001:443"
+    depends_on:
+      - database
+  database:
+    image: postgres:latest
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5432:5432"
