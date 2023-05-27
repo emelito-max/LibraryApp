@@ -1,5 +1,9 @@
 ﻿FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 WORKDIR /app
+
+# Remove this line if not running development
+ENV APPNETCORE_ENVIRONMENT=Development
+
 EXPOSE 80
 EXPOSE 443
 
