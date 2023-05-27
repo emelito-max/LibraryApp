@@ -13,7 +13,7 @@ services:
     depends_on:
       - database
     volumes:
-      - app-data:/var/lib/app-data
+      - app-data:/var/lib/temporary/library/server
     networks:
       server_net:
          ipv4_address: 172.20.0.2 
@@ -29,7 +29,7 @@ services:
     ports:
       - "4002:5432"
     volumes: 
-      - db-data:/var/lib/postgresql/temporary/library
+      - db-data:/var/lib/temporary/library/db-data
     networks:
         db_net:
             ipv4_address: 172.20.1.2
@@ -44,7 +44,7 @@ services:
     ports:
       - "4003:80"
     volumes:
-        - db-data:/var/lib/postgresql/temporary/library
+        - db-data:/var/lib/temporary/library/db-data/pgadmin
     networks:
         db_net:
             ipv4_address: 172.20.1.3
