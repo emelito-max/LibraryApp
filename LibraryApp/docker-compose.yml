@@ -29,7 +29,7 @@ services:
     ports:
       - "4002:5432"
     volumes: 
-      - db-data:/var/lib/temporary/library/db-data
+      - postgresql:/var/lib/postgresql/data
     networks:
         db_net:
             ipv4_address: 172.20.1.2
@@ -37,21 +37,27 @@ services:
   pgadmin:
     container_name: pgadmin
     image: dpage/pgadmin4
-    restart: always
     environment:
-        PGADMIN_DEFAULT_EMAIL: admin@admin.com
-        PGADMIN_DEFAULT_PASSWORD: admin
+        PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
+        PGADMIN_DEFAULT_PASSWORD: "admin"
+        PGADMIN_CONFIG_SERVER_MODE: "False"
     ports:
       - "4003:80"
     volumes:
-        - db-data:/var/lib/temporary/library/db-data/pgadmin
+        - pgadmin:/var/lib/pgadmin
     networks:
         db_net:
             ipv4_address: 172.20.1.3
+    restart: unless-stopped
             
 volumes:
-    db-data:
+    postgresql:
+      name: postgresql
     app-data:
+      name: app-data
+    pgadmin:
+      name: pgadmin
+      
       
 networks:
   server_net:
